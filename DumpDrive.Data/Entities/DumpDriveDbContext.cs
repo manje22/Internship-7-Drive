@@ -1,5 +1,7 @@
 ﻿using DumpDrive.Data.Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +72,27 @@ namespace DumpDrive.Data.Entities
 
 
             base.OnModelCreating(modelBuilder);
+        }
+    }
+
+    public class DumpDriveContextFactory : IDesignTimeDbContextFactory<DumpDriveDbContext>
+    {
+        public DumpDriveDbContext CreateDbContext(string[] args)
+        {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddXmlFile("App.config")
+                .Build();
+
+            config.Providers
+                .First()
+                .TryGet("connectionStrings:add:DumpDrive:connectionString", out var connectionString);
+
+            var options = new DbContextOptionsBuilder<DumpDriveDbContext>()
+                .UseNpgsql(connectionString)
+                .Options;
+
+            return new DumpDriveDbContext(options);
         }
     }
 }
