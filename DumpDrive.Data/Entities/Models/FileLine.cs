@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace DumpDrive.Data.Entities.Models
 {
-    internal class FileLine
+    public class FileLine
     {
+        public int Id { get; set; }
+        public int FileId { get; set; }
+        public File ParentFile { get; set; }
+        public string Content { get; set; }
+
+        public FileLine(int fileId, string content)
+        {
+            Id = fileId;
+            Content = content;
+        }
     }
 }
