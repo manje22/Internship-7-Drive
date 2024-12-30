@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -16,6 +16,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DumpDrive.Domain\DumpDrive.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstractions\" />
+    <Folder Include="Actions\" />
+    <Folder Include="Extentions\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>
