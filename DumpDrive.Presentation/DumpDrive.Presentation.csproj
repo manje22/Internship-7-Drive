@@ -22,6 +22,7 @@
     <Folder Include="Abstractions\" />
     <Folder Include="Actions\" />
     <Folder Include="Extentions\" />
+    <Folder Include="Factories\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
 

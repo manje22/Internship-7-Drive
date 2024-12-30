@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DumpDrive.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Configuration;
-using DumpDrive.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DumpDrive.Presentation.Factories
+namespace DumpDrive.Domain.Factories
 {
     public static class DbContextFactory
     {
