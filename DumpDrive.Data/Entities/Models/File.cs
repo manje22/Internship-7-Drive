@@ -22,7 +22,7 @@ namespace DumpDrive.Data.Entities.Models
         {
             Name = name;
             FolderId = folderId;
-            Created = DateTime.Now;
+            Created = DateTime.UtcNow;
         }
     }
 }

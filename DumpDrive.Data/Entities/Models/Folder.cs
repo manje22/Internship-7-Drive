@@ -13,7 +13,7 @@ namespace DumpDrive.Data.Entities.Models
         public Drive ParentDrive { get; set; }
         public string Name { get; set; }
         public ICollection<File> Files { get; set; } = new List<File>();
-        public ICollection<SharedFolderUser> SharedWith { get; set; } = new List<User>();
+        public ICollection<SharedFolderUser> SharedWith { get; set; } = new List<SharedFolderUser>();
 
         public Folder(int parentDriveId,  string name)
         {

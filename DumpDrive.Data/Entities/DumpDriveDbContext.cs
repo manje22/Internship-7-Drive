@@ -1,12 +1,9 @@
 ﻿using DumpDrive.Data.Entities.Models;
+using DumpDrive.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DumpDrive.Data.Entities
 {
@@ -70,7 +67,7 @@ namespace DumpDrive.Data.Entities
                 .WithMany(f => f.Comments);
 
 
-
+            DatabaseSeeder.Seed(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
     }
@@ -87,6 +84,7 @@ namespace DumpDrive.Data.Entities
             config.Providers
                 .First()
                 .TryGet("connectionStrings:add:DumpDrive:connectionString", out var connectionString);
+
 
             var options = new DbContextOptionsBuilder<DumpDriveDbContext>()
                 .UseNpgsql(connectionString)
