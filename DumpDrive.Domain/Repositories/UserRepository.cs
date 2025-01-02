@@ -47,5 +47,14 @@ namespace DumpDrive.Domain.Repositories
 
             return SaveChanges();
         }
+
+        public Result GetByEmail(string email)
+        {
+            var foundUser = DbContext.Users.FirstOrDefault(U => U.Email == email);
+            if (foundUser is null)
+                return Result.NotFound;
+
+            return Result.Success;
+        }
     }
 }

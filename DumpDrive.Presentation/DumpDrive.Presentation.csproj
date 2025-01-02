@@ -21,7 +21,6 @@
   <ItemGroup>
     <Folder Include="Actions\MainMenu\" />
     <Folder Include="Factories\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
 
 </Project>
