@@ -129,7 +129,7 @@ namespace DumpDrive.Presentation.Helpers
             string[] inputSplitByMonkey = input.Split('@');
             if (inputSplitByMonkey.Length != 2)
             {
-                Writer.Error("Your email shoul contain just one @");
+                Writer.Error("Your email should contain just one @");
                 return null;
             }
             if (inputSplitByMonkey[0].Length < 1)

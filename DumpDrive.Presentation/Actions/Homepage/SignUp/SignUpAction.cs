@@ -27,19 +27,33 @@ namespace DumpDrive.Presentation.Actions.Homepage.SignUp
             Console.WriteLine("You want to register a new user");
 
             var email = ActionExtenstions.CorrectEmailChoice();
-            var password = ActionExtenstions.CorrectPasswordChoice();
+
             User? user = _userRepository.GetByEmail(email);
 
-            while(user != null)
+            while (user != null)
             {
                 Writer.Error("Vec postoji korisnik");
                 email = ActionExtenstions.CorrectEmailChoice();
-                password = ActionExtenstions.CorrectPasswordChoice();
+                user = _userRepository.GetByEmail(email);
             }
 
+            var password = ActionExtenstions.CorrectPasswordChoice();
+
+            while (!ActionExtenstions.RepeatPassword(password))
+            {
+                Console.WriteLine("unesene lozinke se ne podudaraju");
+            }
+
+            if (!ActionExtenstions.CaptchaTest())
+            {
+                Writer.Error("Krivo unesen string...povratak na pocetak!");
+                return;
+            }
 
             User newUser = new User(email, password);
             _userRepository.Add(newUser);
+
+
         }
     }
 }

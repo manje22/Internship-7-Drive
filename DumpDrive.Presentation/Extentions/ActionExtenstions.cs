@@ -93,11 +93,45 @@ namespace DumpDrive.Presentation.Extentions
             return password;
         }
 
+        public static bool RepeatPassword(string password)
+        {
+            string? repeatPassword = Reader.ReadInput("Ponovite lozinku: ");
+            if (password == repeatPassword)
+                return true;
+            return false;
+        }
+
         public static string? EmailChoice()
         {
             Console.Clear();
             string? email = Reader.ReadInput();
             return email;
+        }
+
+        public static string GenerateRandomString()
+        {
+            Random random = new Random();
+            var str = "";
+            int randValue;
+
+            for(int i  = 0; i < 5; i++)
+            {
+                randValue = random.Next(0, 26);
+                str += Convert.ToChar(randValue + 65);
+            }
+
+            return str;
+        }
+
+        public static bool CaptchaTest()
+        {
+            var rndString = GenerateRandomString();
+
+            Reader.ReadInput($"Molimo da unesete string: {rndString}", out string userInputRandString);
+            Console.WriteLine(userInputRandString);
+            if (rndString == userInputRandString)
+                return true;
+            return false;
         }
     }
 }
