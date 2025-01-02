@@ -18,8 +18,4 @@
     <ProjectReference Include="..\DumpDrive.Domain\DumpDrive.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Actions\MainMenu\" />
-  </ItemGroup>
-
 </Project>

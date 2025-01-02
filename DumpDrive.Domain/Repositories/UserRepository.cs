@@ -59,5 +59,10 @@ namespace DumpDrive.Domain.Repositories
         {
             return user.Password == password;
         }
+
+        public void EditProfile(string email, string password, User user)
+        {
+            DbContext.Users.Update(user, );
+        }
     }
 }
