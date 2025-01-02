@@ -20,6 +20,7 @@ namespace DumpDrive.Domain.Repositories
             return SaveChanges();
         }
 
+
         public Result Delete(int id)
         {
             var userToBeDeleted = DbContext.Users.Find(id);
@@ -48,13 +49,15 @@ namespace DumpDrive.Domain.Repositories
             return SaveChanges();
         }
 
-        public Result GetByEmail(string email)
+        public User? GetByEmail(string email)
         {
             var foundUser = DbContext.Users.FirstOrDefault(U => U.Email == email);
-            if (foundUser is null)
-                return Result.NotFound;
+            return foundUser;
+        }
 
-            return Result.Success;
+        public bool CheckPassword(User user, string password)
+        {
+            return user.Password == password;
         }
     }
 }

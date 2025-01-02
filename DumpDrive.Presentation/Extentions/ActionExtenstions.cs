@@ -1,4 +1,7 @@
 ﻿using DumpDrive.Presentation.Abstractions;
+using DumpDrive.Presentation.Actions;
+using DumpDrive.Presentation.Helpers;
+using DumpDrive.Presentation.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +43,13 @@ namespace DumpDrive.Presentation.Extentions
             } while (!isExitSelected);
         }
 
-        private static void PrintActions(IList<IAction> actions)
+        public static void PrintActions()
+        {
+            var homepageActions = HomepageFactory.CreateActions();
+            homepageActions.PrintActionsAndOpen();
+        }
+
+        public static void PrintActions(IList<IAction> actions)
         {
             foreach (var action in actions)
             {
@@ -62,6 +71,33 @@ namespace DumpDrive.Presentation.Extentions
             {
                 action.MenuIndex = ++index;
             }
+        }
+
+        public static string CorrectEmailChoice()
+        {
+            string? email = Reader.ReadInput();
+            while (email == null)
+            {
+                bool cont = Reader.DoYouWantToContinue();
+                if (cont)
+                    email = EmailChoice();
+                else
+                    PrintActions();
+            }
+            return email;
+        }
+
+        public static string CorrectPasswordChoice()
+        {
+            string? password = Reader.ReadInput("Unesite lozinku: ");
+            return password;
+        }
+
+        public static string? EmailChoice()
+        {
+            Console.Clear();
+            string? email = Reader.ReadInput();
+            return email;
         }
     }
 }
