@@ -21,6 +21,13 @@ namespace DumpDrive.Presentation.Helpers
             Console.Clear();
         }
 
+        public static void Error(string message, int duration)
+        {
+            Console.WriteLine(message);
+            Thread.Sleep(duration);
+            Console.Clear();
+        }
+
         public static void HowShouldYourEmailLook(int number, string where)
         {
             Error($"Your email shoul contain at least {number} letter {where}.");

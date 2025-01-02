@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DumpDrive.Data.Entities.Models;
 
 namespace DumpDrive.Presentation.Extentions
 {
@@ -132,6 +133,12 @@ namespace DumpDrive.Presentation.Extentions
             if (rndString == userInputRandString)
                 return true;
             return false;
+        }
+
+        public static void PrintMainMenu(User user)
+        {
+            var mainMenuActions = MainMenu.CreateActions(user);
+            mainMenuActions.PrintActionsAndOpen();
         }
     }
 }

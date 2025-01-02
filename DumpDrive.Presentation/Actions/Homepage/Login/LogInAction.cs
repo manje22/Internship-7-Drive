@@ -41,8 +41,9 @@ namespace DumpDrive.Presentation.Actions.Homepage.Login
             if (successfullLogIn)
                 Console.WriteLine($"Logged in as {user.Email} pass: {user.Password}");
             else
-                Console.WriteLine("Password incorrect");
+                Writer.Error("Krivo unesena lozinka, povratak na pocetak", 30000);
 
+            ActionExtenstions.PrintMainMenu(user);
         }
 
         public User? FindUser()
