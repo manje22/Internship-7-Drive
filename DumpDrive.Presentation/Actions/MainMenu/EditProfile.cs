@@ -29,12 +29,6 @@ namespace DumpDrive.Presentation.Actions.MainMenu
 
         public void Open()
         {
-            if (_user == null)
-            {
-                Writer.Error("No user is currently logged in.");
-                return;
-            }
-
             Console.WriteLine("Edit profile");
 
             var users = _userRepository.GetAll();
@@ -46,7 +40,7 @@ namespace DumpDrive.Presentation.Actions.MainMenu
                 return;
             }
 
-            Console.WriteLine("Enter new email:");
+
             string? newEmail = Reader.ReadInput();
 
             if (string.IsNullOrEmpty(newEmail))
@@ -55,10 +49,9 @@ namespace DumpDrive.Presentation.Actions.MainMenu
                 return;
             }
 
-            Console.WriteLine("Enter new password:");
+
             var newPassword = ActionExtenstions.CorrectPasswordChoice();
 
-            Console.WriteLine("Repeat new password:");
             if (!ActionExtenstions.RepeatPassword(newPassword))
             {
                 Writer.Error("Passwords do not match.");
@@ -71,8 +64,7 @@ namespace DumpDrive.Presentation.Actions.MainMenu
             var updateResult = _userRepository.Update(user, _user.Email);
             if (updateResult == Result.Success)
             {
-                Console.WriteLine("Successfully edited profile");
-                _user = user; // Update in-memory user state
+                Writer.Write("Success");
             }
             else
             {

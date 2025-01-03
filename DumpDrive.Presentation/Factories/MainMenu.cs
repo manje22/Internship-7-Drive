@@ -21,7 +21,7 @@ namespace DumpDrive.Presentation.Factories
             var actions = new List<IAction>()
             {
                 new EditProfile(RepositoryFactory.Create<UserRepository>(), _user),
-                new ExitMenuAction(),
+                new LogOutAction(),
             };
 
             actions.SetActionIndexes();
