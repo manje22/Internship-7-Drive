@@ -34,20 +34,31 @@ namespace DumpDrive.Domain.Repositories
             return SaveChanges();
         }
 
-        public Result Update(User user, int id)
+        public Result Update(User user, string email)
         {
-            var userToBeUpdated = DbContext.Users.Find(id);
+            var userToBeUpdated = DbContext.Users.FirstOrDefault(u => u.Email == email);
 
-            if (userToBeUpdated is null)
+            if (userToBeUpdated == null)
             {
                 return Result.NotFound;
             }
 
+
+            DbContext.Attach(userToBeUpdated);
             userToBeUpdated.Email = user.Email;
             userToBeUpdated.Password = user.Password;
 
-            return SaveChanges();
+            try
+            {
+                return SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return Result.Error;
+            }
         }
+
+        public ICollection<User> GetAll() => DbContext.Users.ToList();
 
         public User? GetByEmail(string email)
         {
@@ -60,9 +71,5 @@ namespace DumpDrive.Domain.Repositories
             return user.Password == password;
         }
 
-        public void EditProfile(string email, string password, User user)
-        {
-            DbContext.Users.Update(user, );
-        }
     }
 }
